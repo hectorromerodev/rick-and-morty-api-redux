@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primary-color: #3090ab;
+$secondary-color: #38a4c4;
+$accent-color: #1F6D7D;
+$text-color: #f1f1f1;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+html {
+  font-family: 'Source Code Pro', monospace;
+  background-color: $accent-color;
+  scroll-behavior: smooth;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+}
+
+// SHARED STYLES
+
+.container{
+  flex: 1 0 auto;
+  width: 90%;
+  height: auto;
+  min-height: calc(100vh - 14.2rem);
+  margin: 0 auto;
+}
