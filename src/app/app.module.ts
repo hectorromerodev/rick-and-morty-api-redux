@@ -10,10 +10,16 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { environment } from '../environments/environment';
 import { ROOT_REDUCERS, ROOT_EFFECTS } from '@state/app.state';
+import { HeaderComponent } from './modules/shared/components/header/header.component';
+import { SearchComponent } from './modules/shared/components/search/search.component';
+import { SpinnerLoaderComponent } from './modules/shared/components/spinner-loader/spinner-loader.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    SearchComponent,
+    SpinnerLoaderComponent
   ],
   imports: [
     BrowserModule,
