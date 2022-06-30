@@ -10,16 +10,12 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { environment } from '../environments/environment';
 import { ROOT_REDUCERS, ROOT_EFFECTS } from '@state/app.state';
-import { HeaderComponent } from './modules/shared/components/header/header.component';
-import { SearchComponent } from './modules/shared/components/search/search.component';
-import { SpinnerLoaderComponent } from './modules/shared/components/spinner-loader/spinner-loader.component';
+import { SpinnerLoaderModule } from '@shared/components/spinner-loader/spinner-loader.module';
+import { HeaderModule } from '@shared/components/header/header.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    SearchComponent,
-    SpinnerLoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +24,8 @@ import { SpinnerLoaderComponent } from './modules/shared/components/spinner-load
     StoreModule.forRoot(ROOT_REDUCERS),
     EffectsModule.forRoot(ROOT_EFFECTS),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    SpinnerLoaderModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
