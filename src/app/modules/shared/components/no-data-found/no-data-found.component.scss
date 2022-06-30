@@ -1,0 +1,17 @@
+.page__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 2rem;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #fff;
+  }
+
+  p {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+}
