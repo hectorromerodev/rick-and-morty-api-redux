@@ -1,12 +1,25 @@
 import { createReducer, on } from "@ngrx/store";
-
 import { CharacterModel } from "@models/character.models";
-import { retrieveCharacterList } from "../actions/characters.actions";
+import { loadCharacters, loadCharacterSuccess } from "../actions/characters.actions";
 
-export const initialState: ReadonlyArray<CharacterModel> = [];
+export interface CharacterState {
+  characters: ReadonlyArray<CharacterModel>,
+  // character: Readonly<CharacterModel>,
+  error: string | null;
+  status: 'pending' | 'loading' | 'error' | 'success';
+}
+
+export const initialState: CharacterState = {
+  characters: [],
+  // character: {} as CharacterModel,
+  error: null,
+  status: 'pending'
+}
+
 
 export const charactersReducer = createReducer(
   initialState,
-  on(retrieveCharacterList, (state, { characters }) => [...state, ...characters]),
-  // on(retrieveCharacter, (state, { character }) => character )
+  // Trigger loading the characters
+  on(loadCharacters, (state) => ({ ...state, status: 'loading' })),
+  on(loadCharacterSuccess, (state, { characters }) => ({ ...state, status: 'success', characters }))
 )

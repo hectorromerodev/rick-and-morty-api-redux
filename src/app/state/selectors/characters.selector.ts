@@ -1,4 +1,8 @@
-import { CharacterModel } from '@models/character.models';
-import { createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { CharacterState } from '@state/reducers/characters.reducer';
 
-export const selectCharacters = createFeatureSelector<ReadonlyArray<CharacterModel>>('characters');
+
+export const selectCharacters = createFeatureSelector<CharacterState>('characters');
+export const selectAllCharacters = createSelector(
+  selectCharacters,
+  (state) => state.characters);
