@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadCharacters } from '@state/actions/characters.actions';
+import { selectAllCharacters } from '@state/selectors/characters.selector';
 
 @Component({
   selector: 'app-characters',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./characters.component.scss']
 })
 export class CharactersComponent implements OnInit {
+  public characters$ = this.store.select(selectAllCharacters);
 
-  constructor() { }
+  constructor(
+    private store: Store
+  ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadCharacters());
   }
 
 }

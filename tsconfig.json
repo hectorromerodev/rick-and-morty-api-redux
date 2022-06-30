@@ -13,6 +13,9 @@
       "@models/*": [
         "src/app/core/models/*"
       ],
+      "@state/*": [
+        "src/app/state/*"
+      ],
       "@shared/*": [
         "src/app/shared/*"
       ],
