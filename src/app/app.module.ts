@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { ROOT_REDUCERS, ROOT_EFFECTS } from '@state/app.state';
 import { SpinnerLoaderModule } from '@shared/components/spinner-loader/spinner-loader.module';
 import { HeaderModule } from '@shared/components/header/header.module';
+import { SpinnerLoaderInterceptor } from './core/interceptors/spinner-loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { HeaderModule } from '@shared/components/header/header.module';
     SpinnerLoaderModule,
     HeaderModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerLoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
