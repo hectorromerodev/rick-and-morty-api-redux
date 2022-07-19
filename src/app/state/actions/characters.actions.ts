@@ -13,5 +13,19 @@ export const loadCharacterSuccess = createAction(
 
 export const loadCharactersFailure = createAction(
   '[Character List] Load Characters Failure',
-  props<{ error: Readonly<String> }>
+)
+
+export const loadOneCharacter = createAction(
+  '[Character] Load One Character',
+  props<{ id: Readonly<number> }>()
+)
+
+export const loadOneCharacterSuccess = createAction(
+  '[Character] Load Character Success',
+  props<{ character: Readonly<CharacterModel> }>()
+)
+
+export const filterCharacters = createAction(
+  '[Character filter] Filter Character',
+  props<{ characters: ReadonlyArray<CharacterModel> }>()
 )

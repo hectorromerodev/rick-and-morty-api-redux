@@ -34,6 +34,17 @@ export class DataService {
       )
   }
 
+  getCharacterDetails(id: number): Observable<CharacterModel> {
+    return this.http.get<CharacterModel>(ENDPOINT + environment.CHARACTERS + `/${id}`)
+      .pipe(
+        take(1),
+        catchError(error => {
+          console.warn(error, 'No more episodes to load');
+          return of(error)
+        })
+      );
+  }
+
   getEpisodes(pageNum = 1): Observable<EpisodeModel[]> {
     const params = new HttpParams().set('page', pageNum);
     return this.http.get<{ results: EpisodeModel[] }>(ENDPOINT.concat(environment.EPISODES), { params })

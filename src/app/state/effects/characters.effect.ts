@@ -4,7 +4,7 @@ import { EMPTY, mergeMap, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
 import { DataService } from "@services/data.service";
-import { loadCharacters, loadCharacterSuccess } from "@state/actions/characters.actions";
+import { loadCharacters, loadCharacterSuccess, loadOneCharacter, loadOneCharacterSuccess } from "@state/actions/characters.actions";
 
 @Injectable()
 export class CharactersEffect {
@@ -18,6 +18,24 @@ export class CharactersEffect {
       ))
     )
   );
+
+  loadOneCharacter$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadOneCharacter),
+      mergeMap(actions => {
+        console.warn(actions);
+        return this.dataSvc.getCharacterDetails(2).pipe(
+          map(character => loadOneCharacterSuccess({ character })),
+          catchError((error) => {
+            console.error(error);
+            return EMPTY;
+          }),
+        )
+      }),
+    )
+  )
+
+
 
   constructor(
     private actions$: Actions,
